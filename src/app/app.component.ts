@@ -12,8 +12,9 @@ export class AppComponent {
   age = 21;
   img = 'https://source.unsplash.com/random';
   btnDisabled = true;
-  newName = '';
+  imgWidth = 10;
   names: string[] = ['Angel', 'Eduardo', 'Ramón'];
+  newName = '';
   person = {
     name: 'Angel',
     age: 21,
