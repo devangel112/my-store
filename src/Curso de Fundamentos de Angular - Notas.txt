@@ -1,0 +1,49 @@
+TypeScript puede inferir tipos:
+
+Ej. const username: string = 'angel112';
+
+El colocar " : " enseguida del nombre de la variable, se refiere a que esperaremos a que
+sea de un tipo determinado, en este caso le diremos que es de tipo string.
+
+También se le puede asignar más tipos:
+
+Ej. const username: string | number = 'angel112';
+    const username: string | number = 1;
+
+En ninguno de los casos nos arrojaría un error, ya que espera ser de tipo number o de
+tipo string.
+
+=========================================================================================
+
+POO en TypeScript
+
+Dos formas de crear una clase:
+
+1.
+	class Person {
+		age: number;
+		lastName: string;
+		constructor(age: number, lastName: string) {
+			this.age = age;
+			this.lastName = lastName;
+		}
+	}
+2.
+	class Person {
+		constructor(public age: number, public lastName: string) {
+		}
+	}
+
+La segunda forma nos permite crear la clase persona de la misma forma que la primer
+forma, únicamente reduciendo la cantidad de líneas necesarias para ello, aún así,
+las dos cuentan con variables públicas, y en caso de ser requerido, modificar su acceso
+para volverlo privado.
+
+=========================================================================================
+
+Property Binding
+
+Podemos ligar propiedades desde el componente.
+
+Ej. <input type="text" placeholder="Nombre" [value]="name">
+Colocar entre " [] " nos permite decirle al framework que obtendrá ese valor desde el componente.
