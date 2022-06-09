@@ -1,3 +1,25 @@
+<h1>NgClass y NgStyle</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
+<hr
+  [ngClass]="{
+    valid: nameInput2.valid,
+    invalid: nameInput2.invalid
+  }"
+/>
+<div>
+  <input type="number" [(ngModel)]="box.width" />
+  <input type="number" [(ngModel)]="box.height" />
+  <input type="color" [(ngModel)]="box.background" />
+</div>
+<div
+  [ngStyle]="{
+    'width.px': box.width,
+    'height.px': box.height,
+    'background-color': box.background,
+    display: 'block'
+  }"
+></div>
+<hr />
 <h1>[Class] y [Style] dinámicos</h1>
 <input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
 <p class="error-message" [class.invalid]="nameInput2.invalid">
