@@ -1,3 +1,35 @@
+<h2>NgFor lista objetos</h2>
+<div class="items--grid">
+  <div *ngFor="let item of items; index as i">
+    <h4 class="item--name">{{ item.name }}</h4>
+    <p
+      *ngIf="
+        item.hasOwnProperty('category') &&
+          item.category !== null &&
+          item.category !== '';
+        else noCategory
+      "
+      class="item--category"
+    >
+      Category: {{ item.category }}
+    </p>
+    <ng-template #noCategory>
+      <p class="item--category">No category</p>
+    </ng-template>
+    <img
+      [src]="item.image"
+      alt="Photo {{ i + 1 }}"
+      id="Photo-{{ i + 1 }}"
+      width="200"
+      height="auto"
+      class="item--image"
+    />
+    <p class="item--price">Price ${{ item.price }}</p>
+    <button (click)="downloadPhoto(i)">Download Photo</button>
+  </div>
+</div>
+<hr />
+<!--
 <h1>NgSwitch</h1>
 <input type="text" [(ngModel)]="person.name" placeholder="Nombre" />
 <div [ngSwitch]="person.name">
@@ -121,4 +153,4 @@
   src="{{ img }}"
   alt="Imagen aleatoria"
   style="width: 250px; height: auto"
-/>
+/> -->

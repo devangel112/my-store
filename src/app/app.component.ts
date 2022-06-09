@@ -23,24 +23,24 @@ export class AppComponent {
     {
       name: 'Photo 1',
       price: 200,
-      image: 'https://source.unsplash.com/random',
+      image: './assets/img-1.jpg',
       category: 'All',
     },
     {
       name: 'Photo 2',
       price: 213,
-      image: 'https://source.unsplash.com/random',
+      image: './assets/img-2.jpg',
       category: '',
     },
     {
       name: 'Photo 3',
       price: 245,
-      image: 'https://source.unsplash.com/random',
+      image: './assets/img-1.jpg',
     },
     {
       name: 'Photo 4',
       price: 834,
-      image: 'https://source.unsplash.com/random',
+      image: './assets/img-2.jpg',
     },
   ];
 
@@ -75,5 +75,18 @@ export class AppComponent {
 
   deleteName(index: number) {
     this.names.splice(index, 1);
+  }
+
+  downloadPhoto(index: number) {
+    const element = document.getElementById('Photo-' + (index + 1));
+    const url: any = element?.getAttribute('src');
+    if (url !== null || url !== '') {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = url.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
   }
 }
