@@ -46,4 +46,47 @@ Property Binding
 Podemos ligar propiedades desde el componente.
 
 Ej. <input type="text" placeholder="Nombre" [value]="name">
-Colocar entre " [] " nos permite decirle al framework que obtendrá ese valor desde el componente.
+Colocar entre " [] " nos permite decirle al framework que obtendrá ese valor desde el
+componente.
+
+=========================================================================================
+
+NgIf
+
+Podemos hacer uso de condicionales en el template de nuestro componente de angular.
+
+Ej.
+
+	<div *ngIf="person.name === 'Angel' && person.age === 21">
+	  <p>Soy Angel y tengo 21 años.</p>
+	</div>
+
+Si se requiere un bloque de else, se haría de la siguiente forma:
+
+	<div *ngIf="person.name === 'Eduardo'; else elseBlock">
+	  <p>Soy Eduardo</p>
+	</div>
+	<ng-template #elseBlock>
+	  <p>Else block</p>
+	</ng-template>
+
+En otros casos, también se puede utilizar el bloque then, de la misma forma que el bloque
+else.
+
+=========================================================================================
+
+NgFor
+
+Al igual que con el condicional if, podemos usar el ciclo for en nuestro template.
+
+Ej.
+
+	<ul>
+	  <li *ngIf="names.length === 0">No hay nombres registrados.</li>
+	  <li *ngFor="let name of names; index as i">
+	    {{ name }}
+	    <button (click)="deleteName(i)">Eliminar</button>
+	  </li>
+	</ul>
+
+=========================================================================================

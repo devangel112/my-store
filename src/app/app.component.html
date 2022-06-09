@@ -1,42 +1,115 @@
+<h1>NgFor</h1>
+<input type="text" required [(ngModel)]="newName" />
+<button (click)="addName()">Añadir nombre</button>
+<ul>
+  <li *ngIf="names.length === 0">No hay nombres registrados.</li>
+  <li *ngFor="let name of names; index as i">
+    {{ name }}
+    <button (click)="deleteName(i)">Eliminar</button>
+  </li>
+</ul>
+<h2>NgFor para Arrays</h2>
+<ul>
+  <li *ngFor="let item of items; index as i">
+    <h4>{{ item.name }}</h4>
+    <h4 *ngIf="item.category !== null && item.category !== ''">
+      {{ item.category }}
+    </h4>
+    <img [src]="item.image" alt="Photo {{ i + 1 }}" width="100" />
+    <h4>Price ${{ item.price }}</h4>
+  </li>
+</ul>
+<hr />
+<h1>NgIf</h1>
+<input type="text" [(ngModel)]="person.name" placeholder="Nombre" />
+<div *ngIf="person.name === 'Angel' && person.age === 21">
+  <p>Soy Angel y tengo 21 años.</p>
+</div>
+<div *ngIf="person.name === 'Eduardo'; else elseBlock">
+  <p>Soy Eduardo</p>
+</div>
+<ng-template #elseBlock>
+  <p>Else block</p>
+</ng-template>
+<hr />
 <h1>NgModel</h1>
-<p>Nombre {{person.name}}</p>
-<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" placeholder="Nombre">
+<p>Nombre {{ person.name }}</p>
+<input
+  type="text"
+  required
+  #nameInput="ngModel"
+  [(ngModel)]="person.name"
+  placeholder="Nombre"
+/>
 <p>Valid: {{ nameInput.valid }}</p>
-<input type="number" max="21" min="10" required #ageInput="ngModel" [(ngModel)]="person.age" placeholder="Edad">
-<p>Edad {{person.age}}</p>
+<input
+  type="number"
+  max="21"
+  min="10"
+  required
+  #ageInput="ngModel"
+  [(ngModel)]="person.age"
+  placeholder="Edad"
+/>
+<p>Edad {{ person.age }}</p>
 <p>Valid: {{ ageInput.valid }}</p>
-<hr/>
+<hr />
 <h1>Eventos</h1>
 <h2>Click</h2>
 <button [disabled]="btnDisabled">Enviar</button>
 <button (click)="toggleButton()">Botón de activación</button>
-<br/>
+<br />
 <button (click)="decreaseAge()">Age --</button>
 <span> Edad {{ person.age }} </span>
 <button (click)="increaseAge()">Age ++</button>
 <h2>Scroll</h2>
 <div class="box" (scroll)="onScroll($event)">
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est veniam maiores error labore, saepe pariatur aut sequi dolore, a, nisi officia. Nostrum quia vero hic corporis nihil explicabo autem voluptatem fuga dolor voluptates, officia accusantium dicta expedita itaque, nulla reiciendis fugiat dolorum mollitia aut, qui cum ipsa molestiae aperiam magnam! Ab corporis sint quisquam quas voluptatibus fugiat, veniam in eum fugit pariatur consectetur quos accusantium a soluta, eveniet sit doloremque! Veritatis et dignissimos recusandae aliquid sint ipsum sunt ex accusantium harum, rerum nemo atque labore eaque voluptatem quasi id eveniet provident sequi quos aperiam! Mollitia minima et voluptatem laborum necessitatibus accusamus a magnam non consectetur iste vitae, temporibus quia ullam aliquam nobis repellat animi, autem optio vero velit eveniet illo? Rerum, magni, quasi saepe praesentium non accusantium obcaecati sunt culpa esse id quibusdam necessitatibus numquam? Vero impedit pariatur aperiam laudantium, porro tenetur provident officiis itaque! Ipsum molestias quis doloremque.</p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est veniam
+    maiores error labore, saepe pariatur aut sequi dolore, a, nisi officia.
+    Nostrum quia vero hic corporis nihil explicabo autem voluptatem fuga dolor
+    voluptates, officia accusantium dicta expedita itaque, nulla reiciendis
+    fugiat dolorum mollitia aut, qui cum ipsa molestiae aperiam magnam! Ab
+    corporis sint quisquam quas voluptatibus fugiat, veniam in eum fugit
+    pariatur consectetur quos accusantium a soluta, eveniet sit doloremque!
+    Veritatis et dignissimos recusandae aliquid sint ipsum sunt ex accusantium
+    harum, rerum nemo atque labore eaque voluptatem quasi id eveniet provident
+    sequi quos aperiam! Mollitia minima et voluptatem laborum necessitatibus
+    accusamus a magnam non consectetur iste vitae, temporibus quia ullam aliquam
+    nobis repellat animi, autem optio vero velit eveniet illo? Rerum, magni,
+    quasi saepe praesentium non accusantium obcaecati sunt culpa esse id
+    quibusdam necessitatibus numquam? Vero impedit pariatur aperiam laudantium,
+    porro tenetur provident officiis itaque! Ipsum molestias quis doloremque.
+  </p>
 </div>
 <h2>Keyup</h2>
-<input type="text" [value]="person.name" (keyup)="changeName($event)" placeholder="Nombre">
-<p>Nombre {{person.name}}</p>
-<hr/>
+<input
+  type="text"
+  [value]="person.name"
+  (keyup)="changeName($event)"
+  placeholder="Nombre"
+/>
+<p>Nombre {{ person.name }}</p>
+<hr />
 <h1>Property Binding</h1>
 <h2>Usando propiedades</h2>
-<input type="text" placeholder="Nombre" [value]="name">
+<input type="text" placeholder="Nombre" [value]="name" />
 <progress max="100" [value]="age"></progress>
-<img [src]="img" alt="Imagen aleatoria" width="100">
+<img [src]="img" alt="Imagen aleatoria" width="100" />
 <button [disabled]="btnDisabled">Enviar</button>
-<br/>
+<br />
 <h2>Usando objetos</h2>
-<input type="text" placeholder="Nombre" [value]="person.name">
+<input type="text" placeholder="Nombre" [value]="person.name" />
 <progress max="100" [value]="person.age"></progress>
-<img [src]="person.avatar" alt="Imagen aleatoria" width="100">
+<img [src]="person.avatar" alt="Imagen aleatoria" width="100" />
 <button [disabled]="btnDisabled">Enviar</button>
-<hr/>
+<hr />
 <h1>Hola mundo</h1>
-<h2>{{'Hola mundo'.repeat(5)}}</h2>
-<p>3 + 3 = {{ 3 + 3}}</p>
+<h2>{{ "Hola mundo".repeat(5) }}</h2>
+<p>3 + 3 = {{ 3 + 3 }}</p>
 <h3>Hola, soy {{ name }} y tengo {{ age }} años de edad</h3>
-<img src="{{img}}" alt="Imagen aleatoria" style="width:250px; height: auto;">
+<img
+  src="{{ img }}"
+  alt="Imagen aleatoria"
+  style="width: 250px; height: auto"
+/>

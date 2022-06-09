@@ -1,20 +1,48 @@
 import { Component } from '@angular/core';
 
+import { Item } from './item.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   name = 'Angel';
   age = 21;
   img = 'https://source.unsplash.com/random';
   btnDisabled = true;
+  newName = '';
+  names: string[] = ['Angel', 'Eduardo', 'Ramón'];
   person = {
     name: 'Angel',
     age: 21,
-    avatar: 'https://source.unsplash.com/random'
-  }
+    avatar: 'https://source.unsplash.com/random',
+  };
+  items: Item[] = [
+    {
+      name: 'Photo 1',
+      price: 200,
+      image: 'https://source.unsplash.com/random',
+      category: 'All',
+    },
+    {
+      name: 'Photo 2',
+      price: 213,
+      image: 'https://source.unsplash.com/random',
+      category: '',
+    },
+    {
+      name: 'Photo 3',
+      price: 245,
+      image: 'https://source.unsplash.com/random',
+    },
+    {
+      name: 'Photo 4',
+      price: 834,
+      image: 'https://source.unsplash.com/random',
+    },
+  ];
 
   toggleButton() {
     this.btnDisabled = !this.btnDisabled;
@@ -35,6 +63,17 @@ export class AppComponent {
 
   changeName(event: Event) {
     const element = event.target as HTMLInputElement;
-    this.person.name = element.value
+    this.person.name = element.value;
+  }
+
+  addName() {
+    if (this.newName !== '') {
+      this.names = [...this.names, this.newName];
+      this.newName = '';
+    }
+  }
+
+  deleteName(index: number) {
+    this.names.splice(index, 1);
   }
 }
