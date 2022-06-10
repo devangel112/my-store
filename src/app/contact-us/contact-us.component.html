@@ -1,1 +1,84 @@
-<p>contact-us works!</p>
+<h1>Get in touch with us</h1>
+
+<form (ngSubmit)="onRegister()" #registerForm="ngForm">
+  <div class="input-group half">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      #nameInput="ngModel"
+      required
+      [(ngModel)]="register.name"
+    />
+    <p
+      class="error-message"
+      [ngClass]="{
+        valid: nameInput.valid,
+        invalid: nameInput.invalid
+      }"
+    >
+      Invalid
+    </p>
+  </div>
+  <div class="input-group half">
+    <label for="lastname">Lastname</label>
+    <input
+      type="text"
+      name="lastname"
+      #lastNameInput="ngModel"
+      required
+      [(ngModel)]="register.lastname"
+    />
+    <p
+      class="error-message"
+      [ngClass]="{
+        valid: lastNameInput.valid,
+        invalid: lastNameInput.invalid
+      }"
+    >
+      Invalid
+    </p>
+  </div>
+  <div class="input-group full">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      #emailInput="ngModel"
+      required
+      [(ngModel)]="register.email"
+    />
+    <p
+      class="error-message"
+      [ngClass]="{
+        valid: emailInput.valid,
+        invalid: emailInput.invalid
+      }"
+    >
+      Invalid
+    </p>
+  </div>
+  <div class="input-group full">
+    <label for="message">Message</label>
+    <textarea
+      name="message"
+      cols="30"
+      rows="8"
+      #messageInput="ngModel"
+      required
+      [(ngModel)]="register.message"
+    ></textarea>
+    <p
+      class="error-message"
+      [ngClass]="{
+        valid: messageInput.valid,
+        invalid: messageInput.invalid
+      }"
+    >
+      Invalid
+    </p>
+  </div>
+  <div class="input-group full">
+    <button type="submit" [disabled]="registerForm.invalid">Send mail</button>
+  </div>
+</form>

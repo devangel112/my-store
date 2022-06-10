@@ -1,5 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+$small: 600px;
+$medium: 830px;
+$large: 1200px;
+h1 {
+  text-align: center;
+  font-size: 3.5rem;
+  margin: 50px;
 
-* {
-  font-family: 'Kanit', sans-serif;
+  @media only screen and (max-width: $medium) {
+    margin: 25px;
+    font-size: 2.5rem
+  }
+}
+
+.error-message {
+  transition: all linear 0.2s;
+  &.valid {
+    opacity: 0;
+  }
+  &.invalid {
+    opacity: 1;
+    color: #ff7676;
+  }
+}
+
+form {
+  width: 50%;
+  max-width: 700px;
+  min-width: 250px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media only screen and (max-width: $medium) {
+    width: 60%;
+    .input-group {
+      &.half {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .input-group {
+    display: grid;
+    margin: 0 5px;
+    grid-template-rows: repeat(2, auto);
+    &.half {
+      width: calc(50% - 10px);
+    }
+
+    &.full {
+      width: 100%
+    }
+
+    label {
+      font-size: 1.3rem;
+    }
+
+    input {
+      height: 30px;
+      padding: 2px 4px;
+      border: none;
+      border-bottom: 1px solid #cacaca;
+      transition: all linear .3s;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 1px solid black;
+    }
+
+    textarea {
+      resize: none;
+      padding: 2px 4px;
+      border: none;
+      border-bottom: 1px solid #cacaca;
+      transition: all linear .3s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-bottom: 1px solid black;
+    }
+
+    button {
+      margin: 10px auto 0;
+      width: 50%;
+      height: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all linear .3s;
+    }
+
+    button:hover {
+      background-color: #ffcd44;
+    }
+
+    button:disabled:hover {
+      background-color: #cacaca;
+      cursor: not-allowed;
+    }
+  }
 }
