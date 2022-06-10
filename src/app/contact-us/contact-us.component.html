@@ -1,62 +1,44 @@
 <h1>Get in touch with us</h1>
 
-<form (ngSubmit)="onRegister()" #registerForm="ngForm">
+<form id="contactForm" [formGroup]="form" (ngSubmit)="onRegister()">
   <div class="input-group half">
     <label for="name">Name</label>
-    <input
-      type="text"
-      name="name"
-      #nameInput="ngModel"
-      required
-      [(ngModel)]="register.name"
-    />
-    <p
-      class="error-message"
-      [ngClass]="{
-        valid: nameInput.valid,
-        invalid: nameInput.invalid
-      }"
-    >
-      Invalid
-    </p>
+    <input type="text" name="name" formControlName="name" id="name" required />
+    <div *ngIf="form.get('name')?.errors && form.get('name')?.touched">
+      <p class="error-message" *ngIf="form.get('name')?.hasError('required')">
+        Name is required
+      </p>
+    </div>
   </div>
   <div class="input-group half">
     <label for="lastname">Lastname</label>
     <input
       type="text"
       name="lastname"
-      #lastNameInput="ngModel"
+      formControlName="lastname"
+      id="lastname"
       required
-      [(ngModel)]="register.lastname"
     />
-    <p
-      class="error-message"
-      [ngClass]="{
-        valid: lastNameInput.valid,
-        invalid: lastNameInput.invalid
-      }"
-    >
-      Invalid
-    </p>
+    <div *ngIf="form.get('lastname')?.errors && form.get('lastname')?.touched">
+      <p
+        class="error-message"
+        *ngIf="form.get('lastname')?.hasError('required')"
+      >
+        Lastname is required
+      </p>
+    </div>
   </div>
   <div class="input-group full">
     <label for="email">Email</label>
-    <input
-      type="email"
-      name="email"
-      #emailInput="ngModel"
-      required
-      [(ngModel)]="register.email"
-    />
-    <p
-      class="error-message"
-      [ngClass]="{
-        valid: emailInput.valid,
-        invalid: emailInput.invalid
-      }"
-    >
-      Invalid
-    </p>
+    <input type="email" name="email" formControlName="email" required />
+    <div *ngIf="form.get('email')?.errors && form.get('email')?.touched">
+      <p class="error-message" *ngIf="form.get('email')?.hasError('required')">
+        Email is required.
+      </p>
+      <p class="error-message" *ngIf="form.get('email')?.hasError('email')">
+        This is not valid email.
+      </p>
+    </div>
   </div>
   <div class="input-group full">
     <label for="message">Message</label>
@@ -64,21 +46,19 @@
       name="message"
       cols="30"
       rows="8"
-      #messageInput="ngModel"
+      formControlName="message"
       required
-      [(ngModel)]="register.message"
     ></textarea>
-    <p
-      class="error-message"
-      [ngClass]="{
-        valid: messageInput.valid,
-        invalid: messageInput.invalid
-      }"
-    >
-      Invalid
-    </p>
+    <div *ngIf="form.get('message')?.errors && form.get('message')?.touched">
+      <p
+        class="error-message"
+        *ngIf="form.get('message')?.hasError('required')"
+      >
+        Message is required
+      </p>
+    </div>
   </div>
   <div class="input-group full">
-    <button type="submit" [disabled]="registerForm.invalid">Send mail</button>
+    <button type="submit">Send mail</button>
   </div>
 </form>
